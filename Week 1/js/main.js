@@ -1,6 +1,6 @@
-// Project 3
-// Visual Frameworks
-// VFW 0113
+// Project 1
+// Mobile Interfaces and Usability
+// MiU 0413
 // By: Garrett Moore
 
 //Wait until the DOM is read.
@@ -54,6 +54,8 @@ window.addEventListener("DOMContentLoaded", function () {
                 $$('linkDisplayData').style.display = "inline";
                 $$('linkAddNew').style.display = "none";
                 $$('items').style.display = "none";
+                var oldItems = $$('items');
+                oldItems.parentNode.removeChild(oldItems);
                 break;
 
             default:
@@ -91,7 +93,7 @@ window.addEventListener("DOMContentLoaded", function () {
     function getToDos() {
         toggleDivs("on");
         if (localStorage.length === 0) {
-            alert("There is no data in local storage. Test record were added.");
+            alert("There is no data in local storage. Test records were added.");
             autoPopulateData();
         }
         //Write data from Local Storage to the browser.
@@ -286,7 +288,7 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 
     //Set up list of people that we will be assigning to-do's to.
-    var toDoAssignees = ["--Choose Staff Member--", "Jim", "Kim"];
+    var toDoAssignees = ["--Choose Staff Member--", "James Makowski", "Sarah Slegona", "Garrett Moore", "Josh Huffine", "Andrew Mund"];
     createAssigneeList();
     errorList = $$('errorList');
 
