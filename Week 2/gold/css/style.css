@@ -6,7 +6,7 @@
 }
 
 h1 {
-    color: #333333;
+    color: #ffffff;
     font-family: Arial, sans-serif;
     font-weight: bold;
 }
@@ -44,6 +44,7 @@ textarea {
 
 label {
     font-family: Arial, sans-serif;
+    color: #ffffff;
 }
 
 input {
@@ -80,6 +81,7 @@ input {
 
 .divHeader {
     background-color: #444444;
+    color: #ffffff;
     padding-top: 0px;
     padding-bottom: 0px;
     margin-bottom: 0px;

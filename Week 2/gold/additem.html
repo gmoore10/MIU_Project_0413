@@ -1,72 +1,102 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="description" content="Our very first HTML5 document. How exciting!" />
-        <meta name="keywords" content="html5, mobile development, Full Sail University" />
-        <meta name="robots" content="index, follow" />
-        <meta name="viewport" content="user-scalable=no, width=device-width" />
-        <link href="css/style.css" rel="stylesheet" />
-        <title>Assignable To-Do List - Add</title>
-    </head>
-    <body>
-        <h1>Assignable To-Do List</h1>
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Our very first HTML5 document. How exciting!" />
+    <meta name="keywords" content="html5, mobile development, Full Sail University" />
+    <meta name="robots" content="index, follow" />
+    <meta name="viewport" content="user-scalable=no, width=device-width" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+    <link href="css/style.css" rel="stylesheet" />
+    <title>Assignable To-Do List - Add</title>
+</head>
+<body>
 
-        <ul id="errorList"></ul>
+    <ul id="errorList"></ul>
 
-        <div id="divLinks">
-            <a href="#" id="linkClearData">Clear Stored Data</a>
-            <a href="#" id="linkDisplayData">Display Data</a>
-            <a href="additem.html" id="linkAddNew" style="display: none;">Add New To-Do</a>
+    <div id="divToDoForm" data-role="page">
+        <div data-role="header" data-position="fixed">
+            <h1>Assignable To-Do List</h1>
         </div>
-        <form action="#" method="post" id="toDoForm">
-            <div id="divYourName" class="divSection">
-                <div id="divYourNameHeader" class="divHeader">Your Name</div>
+
+        <div data-role="content">
+            <div id="divSearch" class="divSection">
+                <div id="divSearchHeader" class="divHeader">Search</div>
                 <ul>
                     <li>
-                        <label for="firstname">First Name </label><br />
-                        <input type="text" id="firstname" />
-                    </li>
-                    <li>
-                        <label for="lastname">Last Name </label><br />
-                        <input type="text" id="lastname" />
+                        <input type="text" style="width: 66%;" id="txtSearch" />&nbsp;
+                        <input type="button" value="Search" style="width: 70px; height: 29px; top: 1px; position: relative;" />
                     </li>
                 </ul>
             </div>
-            <br />
-            <div id="div1" class="divSection">
-                <div id="div2" class="divHeader">To-Do Content</div>
-                <ul>
-                    <li>
-                        <label for="toDoName">To-Do Name </label><br />
-                        <input type="text" id="toDoName" />
-                    </li>
-                    <li>
-                        <label for="dtDue">Due Date</label><br />
-                        <input type="date" id="dtDue" />
-                    </li>
-                    <li id="select">
-                        <label for="assignedto">Assigned To: </label><br />
-                    </li>
-                    <li>
-                        <label for="rngPriority">Priority</label><br />
-                        <input type="range" id="rngPriority" />
-                    </li>
-                    <li>
-                        <label for="txtContent">Content</label><br /><textarea id="txtContent"></textarea>
-                    </li>
-                    <li>
-                        <input type="checkbox" id="chkEmailAssignee" value="Yes" />
-                        <label for="chkEmailAssignee">Send Email to Task Receiver?</label>
-                    </li>
-                    <li>
-                        <input type="hidden" value="external" />
-                    </li>
-                </ul>
-                <input type="button" id="btnSubmit" value="Save To-Do" />
+            <div id="divLinks">
+                <a href="#" id="linkClearData">Clear Stored Data</a>
+                <a href="#" id="linkDisplayData">Display Data</a>
+                <a href="additem.html" id="linkAddNew" style="display: none;">Add New To-Do</a>
             </div>
-        </form>
+            <div id="toDoForm">
+                <form action="#" method="post" id="toDoForm">
+                    <div id="divYourName" class="divSection">
+                        <div id="divYourNameHeader" class="divHeader">Your Name</div>
+                        <ul>
+                            <li>
+                                <label for="firstname">First Name </label><br />
+                                <input type="text" id="firstname" />
+                            </li>
+                            <li>
+                                <label for="lastname">Last Name </label><br />
+                                <input type="text" id="lastname" />
+                            </li>
+                        </ul>
+                    </div>
+                    <br />
+                    <div id="div1" class="divSection">
+                        <div id="div2" class="divHeader">To-Do Content</div>
+                        <ul>
+                            <li>
+                                <label for="toDoName">To-Do Name </label><br />
+                                <input type="text" id="toDoName" />
+                            </li>
+                            <li>
+                                <label for="dtDue">Due Date</label><br />
+                                <input type="date" id="dtDue" />
+                            </li>
+                            <li id="select">
+                                <label for="assignedto">Assigned To: </label><br />
+                            </li>
+                            <li>
+                                <label for="rngPriority">Priority</label><br />
+                                <input type="range" id="rngPriority" />
+                            </li>
+                            <li>
+                                <label for="txtContent">Content</label><br /><textarea id="txtContent"></textarea>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="chkEmailAssignee" value="Yes" />
+                                <label for="chkEmailAssignee">Send Email to Task Receiver?</label>
+                            </li>
+                            <li>
+                                <input type="hidden" value="external" />
+                            </li>
+                        </ul>
+                        <input type="button" id="btnSubmit" value="Save To-Do" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#toDoForm" data-icon="star">Add ToDo</a></li>
+                    <li><a href="#items" data-icon="star">Items</a></li>
+                    <li><a href="#favorite" data-icon="star">Favorite</a></li>
+                    <li><a href="#favorite" data-icon="star">Favorite</a></li>
+                </ul>
+            </div>
+        </div>
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
         <script src="js/json.js" type="text/javascript"></script>
         <script src="js/main.js" type="text/javascript"></script>
     </body>
-</html>
+    </html>

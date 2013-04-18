@@ -90,20 +90,97 @@ window.addEventListener("DOMContentLoaded", function () {
         alert("To-Do Saved!");
     }
 
+    function makeNavBar(footerDiv) {
+        //START MENU CODE HERE
+        var makeDivNavBar = document.createElement('div');
+        makeDivNavBar.setAttribute("data-role", "navbar");
+        footerDiv.appendChild(makeDivNavBar);
+
+        var makeNavBarList = document.createElement('ul');
+        makeDivNavBar.appendChild(makeNavBarList);
+
+        var makeNavBarOptOne = document.createElement('li');
+        var makeNavBarOptOneAnchor = document.createElement('a');
+        makeNavBarOptOneAnchor.setAttribute("href", "index.html");
+        makeNavBarOptOneAnchor.setAttribute("data-icon", "home");
+        makeNavBarOptOneAnchor.innerHTML = "Home";
+
+        makeNavBarList.appendChild(makeNavBarOptOne);
+        makeNavBarOptOne.appendChild(makeNavBarOptOneAnchor);
+
+        var makeNavBarOptTwo = document.createElement('li');
+        var makeNavBarOptTwoAnchor = document.createElement('a');
+        makeNavBarOptTwoAnchor.setAttribute("href", "#divToDoForm");
+        makeNavBarOptTwoAnchor.setAttribute("data-icon", "add");
+        makeNavBarOptTwoAnchor.innerHTML = "Add To-Do";
+
+        makeNavBarList.appendChild(makeNavBarOptTwo);
+        makeNavBarOptTwo.appendChild(makeNavBarOptTwoAnchor);
+
+        var makeNavBarOptThree = document.createElement('li');
+        var makeNavBarOptThreeAnchor = document.createElement('a');
+        makeNavBarOptThreeAnchor.setAttribute("href", "#toDoForm");
+        makeNavBarOptThreeAnchor.setAttribute("data-icon", "star");
+        makeNavBarOptThreeAnchor.innerHTML = "View To-Do's";
+
+        makeNavBarList.appendChild(makeNavBarOptThree);
+        makeNavBarOptThree.appendChild(makeNavBarOptThreeAnchor);
+
+        var makeNavBarOptFour = document.createElement('li');
+        var makeNavBarOptFourAnchor = document.createElement('a');
+        makeNavBarOptFourAnchor.setAttribute("href", "#toDoForm");
+        makeNavBarOptFourAnchor.setAttribute("data-icon", "star");
+        makeNavBarOptFourAnchor.innerHTML = "Test";
+
+        makeNavBarList.appendChild(makeNavBarOptFour);
+        makeNavBarOptFour.appendChild(makeNavBarOptFourAnchor);
+    }
+
     function getToDos() {
-        toggleDivs("on");
+        //toggleDivs("on");
         if (localStorage.length === 0) {
-            alert("There is no data in local storage. Test records were added.");
+            //alert("There is no data in local storage. Test records were added.");
             autoPopulateData();
         }
         //Write data from Local Storage to the browser.
         var makeDiv = document.createElement('div');
         makeDiv.setAttribute("id", "items");
         makeDiv.setAttribute("class", "divSection");
+        makeDiv.setAttribute("data-role", "page");
+        makeDiv.setAttribute("data-add-back-btn", "true");
+
         var makeList = document.createElement('ul');
-        makeDiv.appendChild(makeList);
+        makeList.setAttribute("data-filter", true);
+        makeList.setAttribute("data-role", "listview")
+        
+        var makeHeader = document.createElement('div');
+        makeHeader.setAttribute("id", "itemsHeader");
+        makeHeader.setAttribute("data-role", "header");
+        makeHeader.setAttribute("data-position", "fixed");
+
+        var makeHeadingText = document.createElement('h1');
+        makeHeadingText.innerHTML = "To-Do Items";
+        makeHeader.appendChild(makeHeadingText);
+
+        makeDiv.appendChild(makeHeader);
+
+        var makeContent = document.createElement('div');
+        makeContent.setAttribute("id", "itemsContent");
+        makeContent.setAttribute("data-role", "content");
+        makeContent.appendChild(makeList);
+        makeDiv.appendChild(makeContent);
+
+        var makeFooter = document.createElement("div");
+        makeFooter.setAttribute("id", "itemsFooter");
+        makeFooter.setAttribute("data-role", "footer");
+        makeFooter.setAttribute("data-position", "fixed");
+        makeDiv.appendChild(makeFooter);
+
+        makeNavBar(makeFooter);
+
+        //makeList.setAttribute("data-filter", true);
         document.body.appendChild(makeDiv);
-        $$('items').style.display = "block";
+        //$$('items').style.display = "block";
 
         //Get number of local storage items and add list items to ul for each local storage item
         for (var i = 0, j = localStorage.length; i < j; i++) {
@@ -190,7 +267,7 @@ window.addEventListener("DOMContentLoaded", function () {
         var localItem = JSON.parse(localRecord);
 
         //Show form
-        toggleDivs("off");
+        //toggleDivs("off");
 
         //Populate Form with current record from localStorage
         //$$('groups').value = item.group[1];
@@ -299,4 +376,5 @@ window.addEventListener("DOMContentLoaded", function () {
     clearLink.addEventListener("click", clearLocal);
     var save = $$('btnSubmit');
     save.addEventListener("click", validate);
+    getToDos();
 });
